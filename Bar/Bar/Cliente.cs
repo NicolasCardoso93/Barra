@@ -29,32 +29,21 @@ namespace Bar
             return true;
         }
 
-        private bool stockDeBebidas(Bebida bebidas)
-        {
-            if (bebidas.stock == 0)
-            {
-                return false;
-            }
-            return true;
-        }
+        private bool stockDeBebidas(Bebida bebidas) => bebidas.stock == 0;
+
         public void comprarBebida(Bebida bebidas)
         {
             stockDeBebidas(bebidas);
             teAlcanza(bebidas);
-            verBebidas(bebidas);
             bebidasDeseadas.Dequeue();
             comprar(bebidas);
         }
         private void comprar(Bebida bebidas)
         {
-            plata -= bebidas.precio; 
+            plata -= bebidas.precio;
+            bebidas.stock -= 1;
         }
-        private void verBebidas(Bebida bebidas)
-        {
-            bebidasDeseadas.Peek();
-        }
-
-        
+        private Bebida BebidaDeseada => bebidasDeseadas.Peek();        
             
     }
 }
