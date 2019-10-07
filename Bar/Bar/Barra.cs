@@ -9,15 +9,15 @@ namespace Bar
         public int capacidad { get; set; }
         public List<Bebida> bebidas { get; set; }
         public Queue<Cliente>clientes { get; set; }
+        public Queue<Cliente> colaDeEspera { get; set; }
         public Barra()
         {
 
         }
-       
 
-        //public bool barraLlena(Cliente clientes)
-        //{
+        public void barraLlena(Cliente clientes)
+        {
 
-        //}
+        }
     }
 }

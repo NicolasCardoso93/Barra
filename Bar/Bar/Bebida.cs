@@ -13,10 +13,7 @@ namespace Bar
         {
 
         }
-        private void bebidaComprada(Bebida bebidas)
-        {
-          
-        }
+       
 
     }
 }
