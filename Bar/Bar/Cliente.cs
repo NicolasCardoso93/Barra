@@ -20,30 +20,22 @@ namespace Bar
             bebidasDeseadas.Enqueue(bebidas);
         }
 
-        private bool teAlcanza(Bebida bebidas)
-        {
-            if (bebidas.precio < plata)
-            {
-                return false;
-            }
-            return true;
-        }
+        public bool TeAlcanza => BebidaDeseada.precio <= plata;  
 
-        private bool stockDeBebidas(Bebida bebidas) => bebidas.stock == 0;
 
-        public void comprarBebida(Bebida bebidas)
+        public void comprarBebida()
         {
-            stockDeBebidas(bebidas);
-            teAlcanza(bebidas);
-            bebidasDeseadas.Dequeue();
-            comprar(bebidas);
+            comprar();
+            bebidasDeseadas.Dequeue();            
         }
-        private void comprar(Bebida bebidas)
+        private void comprar()
         {
-            plata -= bebidas.precio;
-            bebidas.stock -= 1;
+            plata -= BebidaDeseada.precio;
+            BebidaDeseada.stock--;
         }
-        private Bebida BebidaDeseada => bebidasDeseadas.Peek();        
+        public Bebida BebidaDeseada => bebidasDeseadas.Peek();
+
+        public bool quiereSeguirTomando => bebidasDeseadas.Count != 0;
             
     }
 }
