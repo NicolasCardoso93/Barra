@@ -10,6 +10,7 @@ namespace Bar
         public List<Bebida> bebidas { get; set; }
         public Queue<Cliente>clientes { get; set; }
         public Queue<Cliente> colaDeEspera { get; set; }
+        public int stock { get; set; }
         public Barra()
         {
 
@@ -38,6 +39,8 @@ namespace Bar
                 }
                 Console.WriteLine($"{cliente.nombre} se compro {cliente.BebidaDeseada.nombre}");
                 cliente.comprarBebida();
+                
+            
 
             } while (cliente.quiereSeguirTomando);
         }

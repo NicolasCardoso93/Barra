@@ -13,6 +13,10 @@ namespace Bar
         {
 
         }
+        public void seTomoUna()
+        {
+            
+        }
        
 
     }
