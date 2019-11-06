@@ -8,7 +8,7 @@ namespace Bar
     {
         public string nombre { get; set; }
         public float plata { get; set; }
-        public float tiempoConsumo { get; set;}
+        public int tiempoConsumo { get; set;}
         public Queue<Bebida> bebidasDeseadas { get; set; }
 
         public Cliente()
@@ -35,7 +35,6 @@ namespace Bar
         }
         public Bebida BebidaDeseada => bebidasDeseadas.Peek();
 
-        public bool quiereSeguirTomando => bebidasDeseadas.Count != 0;
-            
+        public bool quiereSeguirTomando => bebidasDeseadas.Count != 0;            
     }
 }

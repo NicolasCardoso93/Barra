@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Threading;
 namespace Bar
 {
     public class Barra
@@ -17,12 +17,8 @@ namespace Bar
         }
         private bool stockDeBebidas(Bebida bebidas) => bebidas.stock == 0;
 
-        public void barraLlena(Cliente clientes)
-        {
 
-        }
-
-        public void ClienteEnBar(Cliente cliente)
+        public void ClienteEnBarra(Cliente cliente)
         {
 
             do
@@ -39,8 +35,7 @@ namespace Bar
                 }
                 Console.WriteLine($"{cliente.nombre} se compro {cliente.BebidaDeseada.nombre}");
                 cliente.comprarBebida();
-                
-            
+                Thread.Sleep(cliente.tiempoConsumo);
 
             } while (cliente.quiereSeguirTomando);
         }
