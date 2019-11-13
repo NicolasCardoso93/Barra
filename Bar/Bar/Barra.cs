@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+
 namespace Bar
 {
     public class Barra
     {
         public int capacidad { get; set; }
         public List<Bebida> bebidas { get; set; }
-        public Queue<Cliente>clientes { get; set; }
-        public Queue<Cliente> colaDeEspera { get; set; }
+        public Queue<Cliente> filaClientes { get; set; }
+        public int cantidadDePersonas { get; set; }
         public int stock { get; set; }
+        public int tiempoDeTarea { get; set; }
+        public string nombreDeTarea { get; set; }
         public Barra()
         {
 
@@ -41,6 +44,9 @@ namespace Bar
         }
         public bool alcanzaStock(Bebida bebida) => bebida.stock > 0;
        
+       
+
+
 
 
    }
