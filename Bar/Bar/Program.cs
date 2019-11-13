@@ -112,8 +112,14 @@ namespace Bar
                 capacidad = 2,
                 cantidadDePersonas = 5,
                 
-            };
+            };;
+
             laBarrita.bebidas.Add(fernet);
+            laBarrita.bebidas.Add(pinta);
+            laBarrita.bebidas.Add(ron);
+            laBarrita.bebidas.Add(daikiri);
+
+            
 
 
             //Task[] tareas = new Task[cantidadHilos];
@@ -123,7 +129,7 @@ namespace Bar
             //    tareas[i].Start();
             //}
 
-            
+
         }
         
     }
