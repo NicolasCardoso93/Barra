@@ -10,46 +10,13 @@ namespace Bar
     class Program
     {
 
-        const int cantidadHilos = 5;
+        
         const int hilosOperando = 2;
-        private static Semaphore semaforo = new Semaphore(0, cantidadHilos);
+      
         private static int contador = 0;
 
         static void Main(string[] args)
         {
-            Cliente beto = new Cliente()
-            {
-                nombre = "Beto",
-                plata = 500,
-                tiempoConsumo = 1500
-            };
-            Cliente guido = new Cliente()
-            {
-                nombre = "Guido",
-                plata = 800,
-                tiempoConsumo = 5000
-            };
-            Cliente adolfo = new Cliente()
-            {
-                nombre = "Adolfito",
-                plata = 200,
-                tiempoConsumo = 3500
-            };
-            Cliente ivan = new Cliente()
-            {
-                nombre = "Ivan",
-                plata = 500,
-                tiempoConsumo = 2000
-            };
-            Cliente jessica = new Cliente()
-            {
-                nombre = "Jessica",
-                plata = 300,
-                tiempoConsumo = 4500
-            };
-
-
-
             Bebida fernet = new Bebida()
             {
                 nombre = "Fernet",
@@ -79,28 +46,85 @@ namespace Bar
 
             };
 
+
+            Cliente beto = new Cliente()
+            {
+                nombre = "Beto",
+                plata = 500,
+                tiempoConsumo = 1500
+            };
+            beto.agregarBebidas(pinta);
+            beto.agregarBebidas(pinta);
+            beto.agregarBebidas(pinta);
+            beto.agregarBebidas(pinta);
+            beto.agregarBebidas(pinta);
+
+            Cliente guido = new Cliente()
+            {
+                nombre = "Guido",
+                plata = 800,
+                tiempoConsumo = 5000
+            };
+            guido.agregarBebidas(daikiri);
+            guido.agregarBebidas(daikiri);
+
+            Cliente adolfo = new Cliente()
+            {
+                nombre = "Adolfito",
+                plata = 200,
+                tiempoConsumo = 3500,    
+            };
+            adolfo.agregarBebidas(fernet);
+            adolfo.agregarBebidas(ron);
+            adolfo.agregarBebidas(pinta);
+
+            Cliente ivan = new Cliente()
+            {
+                nombre = "Ivan",
+                plata = 500,
+                tiempoConsumo = 2000
+            };
+            ivan.agregarBebidas(pinta);
+            ivan.agregarBebidas(pinta);
+            ivan.agregarBebidas(pinta);
+
+            Cliente jessica = new Cliente()
+            {
+                nombre = "Jessica",
+                plata = 300,
+                tiempoConsumo = 4500
+            };
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+            jessica.agregarBebidas(pinta);
+
+
+
             Barra laBarrita = new Barra()
             {
                 capacidad = 2,
                 cantidadDePersonas = 5,
-
+                
             };
+            laBarrita.bebidas.Add(fernet);
 
-            Task[] tareas = new Task[cantidadHilos];
-            for( int i = 0; i < cantidadHilos; i++ )
-            {
-                tareas[i] = new Task(() => imprimirTask());
-                tareas[i].Start();
-            }
+
+            //Task[] tareas = new Task[cantidadHilos];
+            //for( int i = 0; i < cantidadHilos; i++ )
+            //{
+            //    tareas[i] = new Task(() => imprimirTask());
+            //    tareas[i].Start();
+            //}
 
             
         }
-        static void imprimirTask()
-        {
-            semaforo.WaitOne();
-            Console.WriteLine($"Contador{++contador}");
-            Thread.Sleep(1000);
-            semaforo.Release();
-        }
+        
     }
 }
