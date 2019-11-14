@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-
+using System.Threading.Tasks;
 namespace Bar
 {
     public class Barra
@@ -16,7 +16,8 @@ namespace Bar
         public int stock { get; set; }
         public int tiempoDeTarea { get; set; }
         public string nombreDeTarea { get; set; }
-       
+        private static int count = 0;
+
         private static Semaphore semaforo = new Semaphore(0, cantidadHilos);
         public Barra()
         {
@@ -51,6 +52,20 @@ namespace Bar
             Console.WriteLine("Y Se marchooo");
             semaforo.Release();
         }
+        public void clientesAHilo()
+        {
+            var tareas = new List<Task>();
+            while (cantidadDePersonas != 0)
+            {
+                var cliente = capacidad.Dequeue();
+                tareas.Add(new Task(() => clienteEntraAlBar(cliente)));
+            }
+            tareas.ForEach(t => t.Start());
+            semaforo.Release();
+            Task.WaitAll(tareas.ToArray());
+        }
+
+
         public bool alcanzaStock(Bebida bebida) => bebida.stock > 0;
        
        

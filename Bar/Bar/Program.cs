@@ -119,6 +119,11 @@ namespace Bar
             laBarrita.bebidas.Add(ron);
             laBarrita.bebidas.Add(daikiri);
 
+            laBarrita.ClienteEnBarra(adolfo);
+            laBarrita.ClienteEnBarra(guido);
+            laBarrita.ClienteEnBarra(jessica);
+            laBarrita.ClienteEnBarra(ivan);
+            laBarrita.ClienteEnBarra(beto);
             
 
 
