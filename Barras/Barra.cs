@@ -17,7 +17,7 @@ namespace Barras
         public int stock { get; set; }
         public int tiempoDeTarea { get; set; }
         public string nombreDeTarea { get; set; }
-        private static int count = 0;
+      
 
         private static Semaphore semaforo = new Semaphore(0, cantidadHilos);
         public Barra()
@@ -42,16 +42,17 @@ namespace Barras
                 }
                 if (!cliente.TeAlcanza)
                 {
-                    Console.WriteLine("No posee la plata necesaria");
+                    Console.WriteLine($"{cliente.nombre} No posee la plata necesaria");
                     break;
                 }
                 Console.WriteLine($"{cliente.nombre} se compro {cliente.BebidaDeseada.nombre}");
                 cliente.comprarBebida();
+                Console.WriteLine($"{cliente.nombre} va a descansar {cliente.tiempoConsumo}MS");
                 Thread.Sleep(cliente.tiempoConsumo);
 
 
             } while (cliente.quiereSeguirTomando);
-            Console.WriteLine("Y Se marchooo");
+            Console.WriteLine($"{cliente.nombre} Y Se marchooo");
             semaforo.Release();
         }
         public void clientesAHilo()
@@ -63,7 +64,7 @@ namespace Barras
                 tareas.Add(new Task(() => ClienteEnBarra(cliente)));
             }
             tareas.ForEach(t => t.Start());
-            semaforo.Release();
+            semaforo.Release(capacidad);
             Task.WaitAll(tareas.ToArray());
         }
 
@@ -74,6 +75,7 @@ namespace Barras
 
         public bool AlcanzaStock(Bebida bebida) => bebida.stock > 0;
 
+        
 
 
     }
