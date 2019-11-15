@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,8 +8,8 @@ namespace Bar
 {
     public class Barra
     {
-     
-        public int capacidad { get; set; }
+
+        public int capacidad = 2;
         const int cantidadHilos = 5;
         public List<Bebida> bebidas { get; set; }
         public Queue<Cliente> filaClientes { get; set; }
@@ -55,16 +56,20 @@ namespace Bar
         public void clientesAHilo()
         {
             var tareas = new List<Task>();
-            while (cantidadDePersonas != 0)
+            while (filaClientes.Count != 0)
             {
-                var cliente = capacidad.Dequeue();
-                tareas.Add(new Task(() => clienteEntraAlBar(cliente)));
+                var cliente = filaClientes.Dequeue();
+                tareas.Add(new Task(() => ClienteEnBarra(cliente)));
             }
             tareas.ForEach(t => t.Start());
             semaforo.Release();
             Task.WaitAll(tareas.ToArray());
         }
 
+        public void agregarCliente(Cliente cliente)
+        {
+            filaClientes.Enqueue(cliente);
+        }
 
         public bool alcanzaStock(Bebida bebida) => bebida.stock > 0;
        

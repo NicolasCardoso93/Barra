@@ -15,7 +15,7 @@ namespace Bar
         }
         public void seTomoUna()
         {
-            
+            stock--;
         }
        
 
